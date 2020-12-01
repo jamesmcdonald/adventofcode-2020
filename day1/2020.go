@@ -43,10 +43,13 @@ func main() {
 			if i == j {
 				continue
 			}
-			if values[i]+values[j] == 2020 {
+			if !outerdone && values[i]+values[j] == 2020 {
 				fmt.Println(values[i] * values[j])
-				innerdone = true
+				outerdone = true
 				break
+			}
+			if innerdone {
+				continue
 			}
 			for k := range values {
 				if k == j || k == i {
@@ -54,7 +57,7 @@ func main() {
 				}
 				if values[i]+values[j]+values[k] == 2020 {
 					fmt.Println(values[i] * values[j] * values[k])
-					outerdone = true
+					innerdone = true
 					break
 				}
 			}
